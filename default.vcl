@@ -129,8 +129,6 @@ sub vcl_fetch {
  # So even if HTTP objects are expired (they've passed their TTL), we can still use them in case all backends go down.
  # Remember: old content to show is better than no content at all (or an error page).
   set beresp.grace = 6h;
-
-#  return (deliver);
 }
 
 sub vcl_deliver {
@@ -153,6 +151,4 @@ sub vcl_deliver {
    # Remove some heanders: Varnish
    unset resp.http.Via;
    unset resp.http.X-Varnish;
-
-   return (deliver);
 }
